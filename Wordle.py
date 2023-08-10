@@ -16,24 +16,18 @@ words_list = [     #Список слов
 ]
 
 word = random.choice(words_list)   # Случайный выбор слова 
-
+symbol_word = list(str(word))  # # Слово по буквам  
 
 def start_game(answer):     # Функция приветсвия
     
     if answer == 'да':
         print('Давайте начнём играть. У тебя есть 5 попыток чтобы угадать слово, загаданное мной. Буквы которые стоят на нужных местах подсвечиваются зеленым, если буквы есть в слове, но они не на своих местах, они подсвечиваются желтым.')
-        words_work()
     else:
         print('Пока')
         
 
-def words_work():  
-    
-    string = str(word)   # Создаем строку с нашим словом
-    symbol_word = list(string)  # Разобьём слово на буквы   # Функция работы над словом
-    
-
-def game_jogic():
-    
+def game_logic(your_word):
+    words = list(str(your_word))   # рАзбиваем слово пользователя на буквы
+          
 
 start_game(input('Готовы ли Вы начать играть?: '))
