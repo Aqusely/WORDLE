@@ -28,16 +28,24 @@ def start_game(answer):     # Функция приветсвия
         print('Давайте начнём играть. У тебя есть 5 попыток чтобы угадать слово, загаданное мной. Буквы которые стоят на нужных местах подсвечиваются зеленым, если буквы есть в слове, но они не на своих местах, они подсвечиваются желтым.')
         print('Введите слово: ')
         
-        game_logic(input())
+        game_logic()
             
     else:
         print('Пока')
         
-def game_logic(your_word):
+def game_logic():
 
     count = 0
 
-    while count != 5 and your_word != word:
+    while count != 5:
+
+        your_word = input()
+
+        if word == your_word:
+            print(f'Поздравляем, вы выиграли. Это слово {your_word}')
+            break
+        elif count == 5:
+            break
 
         words = list(str(your_word))   # разбиваем слово пользователя на буквы
         
@@ -54,14 +62,10 @@ def game_logic(your_word):
     
         count += 1
 
-        if count == 5:
-            print('У вас кончились попытки. Попробуйте еще раз')
-            break
-        elif word == your_word:
-            print(f'Поздравляем, вы выиграли. Это слово {your_word}')
-            break
-
-        your_word = input()
+    if your_word != word:
+        print('У вас кончились попытки. Попробуйте еще раз')
+            
+    
         
     
 
@@ -76,5 +80,5 @@ def color(symbol, color):
     
 
 
-print(symbol_word)
+#print(symbol_word)
 start_game(input('Готовы ли Вы начать играть?: '))
