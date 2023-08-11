@@ -1,6 +1,7 @@
 # Игра Wordle в консоли 
 
 import random    # Импортируем библиотеку random
+from colorama import Fore
 
 words_list = [     #Список слов
     'багаж',
@@ -17,6 +18,7 @@ words_list = [     #Список слов
 
 word = random.choice(words_list)   # Случайный выбор слова 
 symbol_word = list(str(word))  # # Слово по буквам  
+final_word = []
 
 def start_game(answer):     # Функция приветсвия
     
@@ -26,16 +28,31 @@ def start_game(answer):     # Функция приветсвия
     else:
         print('Пока')
         
-
 def game_logic(your_word):
-    words = list(str(your_word))   # рАзбиваем слово пользователя на буквы
-    for i in range(len(your_word)):
-        if symbol_word[i] == word[i]:
-            print('Буква на своем месте: ')
-        elif word[i] in symbol_word:
-            print('Буква есть в слове, но не на своем месте')
-        else:
-            continue
+
+    words = list(str(your_word))   # разбиваем слово пользователя на буквы
+    if word != your_word:
+        for i in range(len(your_word)):
+            if symbol_word[i] == words[i]:
+                color(symbol=words[i], color='Green')
+            elif words[i] in symbol_word:
+                color(symbol=words[i], color="Yellow")
+            else:
+                color(symbol=words[i], color='White')
+        print(''.join(final_word))
+    else:
+        print(f'Позравляем, вы победили. Это слово {your_word}')
+
+
+def color(symbol, color):
+    if color == 'Green':
+        final_word.append(Fore.GREEN +symbol)
+    elif color == "Yellow":
+        final_word.append(Fore.YELLOW + symbol)
+    elif color == 'White':
+        final_word.append(Fore.WHITE + symbol)
+    
+
 
 print(symbol_word)
 start_game(input('Готовы ли Вы начать играть?: '))
